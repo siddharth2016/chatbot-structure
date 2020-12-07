@@ -26,3 +26,9 @@ If this does not seem to work, then
 3. Download en_core in venv
 
 `python -m spacy download en-core-web-md`
+
+4. Train Model
+
+`rasa train`
+
+Run this command in terminal, where the venv is activated and all dependencies are installed.
