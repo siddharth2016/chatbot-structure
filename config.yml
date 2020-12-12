@@ -31,7 +31,7 @@ policies:
   max_history: 5
 - name: TEDPolicy
   max_history: 10
-  epochs: 200
+  epochs: 150
   hidden_layers_sizes:
     dialogue: [256, 128]
     label: [256, 128]
