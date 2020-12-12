@@ -28,3 +28,8 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+- story: jira status path
+  steps:
+  - intent: jira_status
+  - action: action_jira_status
