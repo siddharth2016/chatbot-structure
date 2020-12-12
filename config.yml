@@ -27,7 +27,6 @@ pipeline:
 # Configuration for Rasa Core.
 policies:
 # # See https://rasa.com/docs/rasa/policies for more information.
-- name: FormPolicy
 - name: MemoizationPolicy
   max_history: 5
 - name: TEDPolicy
