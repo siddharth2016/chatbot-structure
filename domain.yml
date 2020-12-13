@@ -13,12 +13,19 @@ intents:
   - tell_jira_type
   - get_proj
   - jira_status
+  - get_summary
+  - get_desc
+  - get_est
+  - jira_log_hours
 
 entities:
   - proj_id
   - jira_type
   - app
   - status
+  - hrs
+  - proj
+  - estimate
 
 responses:
   utter_greet:
@@ -40,7 +47,7 @@ responses:
   utter_iamabot:
   - text: "I am a bot, here for your help !"
 
-  utter_ask_proj:
+  utter_ask_proj_id:
   - text: "Please type project id."
 
   utter_ask_summary:
@@ -56,11 +63,11 @@ responses:
   - text: "Please provide type of your jira."
     buttons:
       - title: "Story"
-        payload: '/create_jira{"jira_type": "Story"}'
+        payload: '/create_jira{{"jira_type": "Story"}}'
       - title: "Task"
-        payload: '/create_jira{"jira_type": "Task"}'
+        payload: '/create_jira{{"jira_type": "Task"}}'
       - title: "Bug"
-        payload: '/create_jira{"jira_type": "Bug"}'
+        payload: '/create_jira{{"jira_type": "Bug"}}'
 
   utter_slots_values:
   - text: "You've submitted the following answers:\n
@@ -92,6 +99,7 @@ slots:
 actions:
   - action_hello_world
   - action_jira_status
+  - action_jira_log_hours
 
 forms:
   - create_jira_form
