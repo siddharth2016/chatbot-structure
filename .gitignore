@@ -134,4 +134,6 @@ dmypy.json
 models
 text_ignore.yml
 ngrok
+
+#new ignores
 credentials.yml
