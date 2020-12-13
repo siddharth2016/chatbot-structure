@@ -12,6 +12,7 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
+from rasa_sdk.events import AllSlotsReset
 import json, os
 from datetime import datetime
 
@@ -187,7 +188,14 @@ class JiraForm(FormAction):
 
         print(summary, estimate, description, proj_id, jira_type)
         self.create_jira(estimate, proj_id, jira_type)
-        return ['Sample']
+        dispatcher.utter_message(f'''You've submitted the following answers:\n
+            - Project: {proj_id}\n
+            - Summary: {summary}\n
+            - Estimate: {estimate}\n
+            - Description: {description}\n
+            - Jira Type: {jira_type}
+        ''')
+        return [AllSlotsReset()]
 
     def create_jira(self, est, jira, type):
         a_file = open("actions/dataJson.json", "r")
@@ -204,5 +212,3 @@ class JiraForm(FormAction):
         a_file = open("actions/dataJson.json", "w")
         json.dump(json_object, a_file)
         a_file.close()
-
-        return
