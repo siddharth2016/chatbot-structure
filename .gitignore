@@ -132,3 +132,5 @@ dmypy.json
 .DS_Store
 .vscode
 models
+text_ignore.yml
+ngrok
