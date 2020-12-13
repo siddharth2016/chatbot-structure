@@ -134,3 +134,4 @@ dmypy.json
 models
 text_ignore.yml
 ngrok
+credentials.yml
