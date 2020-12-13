@@ -146,15 +146,24 @@ nlu:
 
 - intent: get_proj
   examples: |
-    - [ABC](proj_id)
-    - [DEF](proj_id)
-    - Project [ABC](proj_id)
-    - project [ABC](proj_id)
-    - proj [ABC](proj_id)
-    - project is [ABC](proj_id)
-    - Project is [ABC](proj_id)
-    - [ABC](proj_id) project
-    - [DEF](proj_id) project
+    - [ABC-000](proj_id)
+    - [DEF-000](proj_id)
+    - Project [ABC-00](proj_id)
+    - project [ABC-00](proj_id)
+    - proj [ABC-0000](proj_id)
+    - project is [ABC-000](proj_id)
+    - Project is [ABC-000](proj_id)
+    - [ABC-111](proj_id) project
+    - [DEF-1010](proj_id) project
+    - [ABC-111](proj_id)
+    - [DEF-222](proj_id)
+    - Project [ABC-001](proj_id)
+    - project [ABC-002](proj_id)
+    - proj [ABC-1001](proj_id)
+    - project is [ABC-100](proj_id)
+    - Project is [ABC-900](proj_id)
+    - [ABC-113](proj_id) project
+    - [DEF-1050](proj_id) project
 
 - intent: out_of_scope
   examples: |
@@ -178,15 +187,15 @@ nlu:
 
 - intent: jira_status
   examples: |
-    - change jira [ABC](app) status to [Close](status)
-    - jira [ABC](app) status to [Close](status)
-    - update jira [ABC](app) status to [Close](status)
-    - change jira [ABC](app) status to [Open](status)
-    - jira [ABC](app) status to [Open](status)
-    - update jira [ABC](app) status to [Open](status)
-    - change jira [ABC](app) status to [Resolved](status)
-    - jira [ABC](app) status to [Resolved](status)
-    - update jira [ABC](app) status to [Resolved](status)
+    - change jira [ABC-101](app) status to [Close](status)
+    - jira [ABC-100](app) status to [Close](status)
+    - update jira [ABC-200](app) status to [Close](status)
+    - change jira [ABC-005](app) status to [Open](status)
+    - jira [ABC-066](app) status to [Open](status)
+    - update jira [ABC-999](app) status to [Open](status)
+    - change jira [ABC-202](app) status to [Resolved](status)
+    - jira [ABC-305](app) status to [Resolved](status)
+    - update jira [ABC-789](app) status to [Resolved](status)
 
 - intent: get_summary
   examples: |
@@ -210,3 +219,14 @@ nlu:
   examples: |
     - [1w](estimate)
     - estimate [1w](estimate)
+
+- intent: jira_log_hours
+  examples: |
+    - log [6](hrs) hrs for [ABC-011](proj)
+    - log [6](hrs) hrs to [ABC-001](proj)
+    - log [8](hrs) hrs for [ABC-190](proj)
+    - log [8](hrs) hrs to [ABC-004](proj)
+    - log [6](hrs) hrs in [ABC-011](proj)
+    - log [6](hrs) hrs on [ABC-001](proj)
+    - log [8](hrs) hrs in [ABC-190](proj)
+    - log [8](hrs) hrs on [ABC-004](proj)
