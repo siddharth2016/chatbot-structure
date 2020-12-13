@@ -33,3 +33,21 @@ stories:
   steps:
   - intent: jira_status
   - action: action_jira_status
+
+- story: Log Jira Hours
+  steps:
+  - intent: jira_log_hours
+  - action: action_jira_log_hours
+
+- story: Create Jira Path
+  steps:
+  - intent: create_jira
+  - action: create_jira_form
+  - slot_was_set:
+    - jira_type: Bug
+    - description: sample description bug
+    - estimate: 1w
+    - summary: sample summary bug}
+    - proj_id: ABC
+  - active_loop: create_jira_form
+
