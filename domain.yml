@@ -69,14 +69,6 @@ responses:
       - title: "Bug"
         payload: '/create_jira{{"jira_type": "Bug"}}'
 
-  utter_slots_values:
-  - text: "You've submitted the following answers:\n
-            - Project: {proj_id}\n
-            - Summary: {summary}\n
-            - Estimate: {estimate}\n
-            - Description: {description}\n
-            - Jira Type: {jira_type}"
-
   utter_submit:
   - text: "Jira Ticket Successfully Created !"
 
