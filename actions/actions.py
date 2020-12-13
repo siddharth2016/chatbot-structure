@@ -13,6 +13,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 import json, os
+from datetime import datetime
 
 
 class ActionHelloWorld(Action):
@@ -24,10 +25,9 @@ class ActionHelloWorld(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        dispatcher.utter_message(text="Hello World!")
+        dispatcher.utter_message(text="Hello World! from action python code!")
 
         return []
-
 
 
 class ActionJiraStatus(Action):
@@ -64,14 +64,6 @@ class ActionJiraStatus(Action):
         new_status = status
         new_assignee = 'User2'
 
-        # for item in json_object["projects"]:
-        #     if item == 'jiraFields':
-        #         for jf in json_object["projects"][item]:
-        #             if jf == "status" and json_object["projects"][item][jf] != new_status:
-        #                 json_object["projects"][item][jf] = new_status
-        #             if jf == "assignee" and json_object["projects"][item][jf] != new_assignee:
-        #                 json_object["projects"][item][jf] = new_assignee
-
         for item in json_object["projects"]:
             if item == 'jiraFields':
                 for i, jf in enumerate(json_object["projects"][item]):
@@ -89,6 +81,63 @@ class ActionJiraStatus(Action):
 
         print('#### Done ####')
         return '--Jira status updated--'
+
+
+class ActionJiraLogHours(Action):
+
+    def name(self) -> Text:
+        return "action_jira_log_hours"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        entities = tracker.latest_message['entities']
+        print('Entities are:')
+        print(entities)
+
+        for e in entities:
+            if e['entity'] == 'proj':
+                app = e['value']
+
+            if e['entity'] == 'hrs':
+                hours = e['value']
+
+
+        message = self.log_hours(app, hours)
+
+        dispatcher.utter_message(text=message)
+
+        return []
+
+    def log_hours(self, jira_no, hrs):
+        date = datetime.now().date().strftime("%Y-%m-%d")
+        a_file = open("actions/dataJson.json", "r")
+        json_object = json.load(a_file)
+        a_file.close()
+        proj_id = jira_no.split('-')[0]
+
+        project = json_object['projects']
+        if project['projectID'] == proj_id:
+            for jira in project['jiraFields']:
+                if jira['jiraID'] == jira_no:
+                    input_dict = {'Date': date,
+                                  'Hours': hrs,
+                                  'Comments': 'test comments'}
+                    if 'workLog' not in jira:
+                        jira['workLog'] = []
+                    jira['workLog'].append(input_dict)
+                else:
+                    print("Jira not mapped under project")
+        else:
+            print("Invalid project")
+
+        a_file = open("actions/dataJson.json", "w")
+        json.dump(json_object, a_file)
+        a_file.close()
+
+        print('#### Done ####')
+        return '--Hours have been logged--'
 
 
 class JiraForm(FormAction):
@@ -120,15 +169,15 @@ class JiraForm(FormAction):
         }
 
     def submit(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict]:
-        a_file = open("actions/dataJson.json", "r")
-        json_object = json.load(a_file)
-        a_file.close()
 
         summary = tracker.get_slot('summary')
         estimate = tracker.get_slot('estimate')
         description = tracker.get_slot('description')
-        
+        proj_id = tracker.get_slot('proj_id')
+
         entities = tracker.latest_message['entities']
+        print('######')
+        print(entities)
         for e in entities:
             if e['entity'] == 'proj_id':
                 proj_id = e['value']
@@ -137,9 +186,23 @@ class JiraForm(FormAction):
                 jira_type = e['value']
 
         print(summary, estimate, description, proj_id, jira_type)
-        
-        return []
+        self.create_jira(estimate, proj_id, jira_type)
+        return ['Sample']
 
+    def create_jira(self, est, jira, type):
+        a_file = open("actions/dataJson.json", "r")
+        json_object = json.load(a_file)
+        a_file.close()
 
+        new_jira = {"jiraID": jira, "type": type, "epic": "techFix", "status": "Open", "assignee": "User10", "estimate": est}
+        for item in json_object["projects"]:
+            if item == 'jiraFields':
+                for i, jf in enumerate(json_object["projects"][item]):
+                    json_object["projects"][item].append(new_jira)
+                    break
 
+        a_file = open("actions/dataJson.json", "w")
+        json.dump(json_object, a_file)
+        a_file.close()
 
+        return
