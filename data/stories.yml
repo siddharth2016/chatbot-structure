@@ -39,7 +39,7 @@ stories:
   - intent: jira_log_hours
   - action: action_jira_log_hours
 
-- story: Create Jira Path
+- story: Create Jira Path 1
   steps:
   - intent: create_jira
   - action: create_jira_form
@@ -47,7 +47,31 @@ stories:
     - jira_type: Bug
     - description: sample description bug
     - estimate: 1w
-    - summary: sample summary bug}
-    - proj_id: ABC
+    - summary: sample summary bug
+    - proj_id: ABC-100
+  - active_loop: create_jira_form
+
+- story: Create Jira Path 2
+  steps:
+  - intent: create_jira
+  - action: create_jira_form
+  - slot_was_set:
+    - jira_type: Task
+    - description: sample description task
+    - estimate: 1w
+    - summary: sample summary task
+    - proj_id: ABC-200
+  - active_loop: create_jira_form
+
+- story: Create Jira Path 3
+  steps:
+  - intent: create_jira
+  - action: create_jira_form
+  - slot_was_set:
+    - jira_type: Story
+    - description: sample description story
+    - estimate: 1w
+    - summary: sample summary story
+    - proj_id: ABC-300
   - active_loop: create_jira_form
 
