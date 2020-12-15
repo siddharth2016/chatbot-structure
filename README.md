@@ -4,6 +4,10 @@ A Simple Chatbot Structure using RASA Framework. Just add your intents, entity a
 
 This project features a simple easy to use chatbot that I did for some weekend activity. The task was to have chatbot create a Jira ticket and do some minor tasks like update logs and update its status.
 
+It was just for fun activity kind of thing.
+
+Please use this chatbot foundation to build further bots using Rasa framework.
+
 ## Steps
 
 1. Create virtual env - `python3 -m venv venv`
