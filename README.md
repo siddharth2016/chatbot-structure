@@ -47,4 +47,12 @@ Run this command in terminal, where the venv is activated and all dependencies a
 
 Open a terminal, say, T1 and type this command in same repo and environment where rasa chatbot code is present. This will run the actions server, which will communicate with the client server to predict the actions results and to display them in terminal.
 
+6. Run Client Server
 
+`rasa shell`
+
+Open a new terminal, say, T2 and type this command in same repo and environment where rasa chatbot code is present. This will run the Client server and communicate with the actions server to predict and show the results.
+
+Thanks for using this repository !
+
+Namaste 🙏
