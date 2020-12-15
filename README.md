@@ -8,6 +8,8 @@ It was just for fun activity kind of thing.
 
 Please use this chatbot foundation to build further bots using Rasa framework.
 
+Below are the steps for installation of rasa framework and getting the bot working !
+
 ## Steps
 
 1. Create virtual env - `python3 -m venv venv`
@@ -38,3 +40,5 @@ If this does not seem to work, then
 `rasa train`
 
 Run this command in terminal, where the venv is activated and all dependencies are installed.
+
+
