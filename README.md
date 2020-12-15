@@ -41,4 +41,10 @@ If this does not seem to work, then
 
 Run this command in terminal, where the venv is activated and all dependencies are installed.
 
+5. Run Actions server
+
+`rasa run actions`
+
+Open a terminal, say, T1 and type this command in same repo and environment where rasa chatbot code is present. This will run the actions server, which will communicate with the client server to predict the actions results and to display them in terminal.
+
 
