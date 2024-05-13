@@ -1,3 +1,4 @@
+# NOT UPDATED - DEPRECATED - KEEPING IT JUST AS A LOG
 # chatbot-structure-deprecated
 
 Deprecated.
